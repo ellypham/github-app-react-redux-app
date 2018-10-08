@@ -2,8 +2,7 @@ import React from "react";
 import FollowingList from "./FollowingList.js";
 import Button from "./Button.js";
 
-const Profile = props => {
-  const { login, avatar_url, handleLogOut, followers } = props;
+const Profile = ({ login, avatar_url, handleLogOut, followers }) => {
   return (
     <div className="profile">
       <h2>Hi {login}</h2>

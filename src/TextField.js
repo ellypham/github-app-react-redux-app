@@ -1,10 +1,9 @@
 import React from "react";
 
-const TextField = props => {
-  const { value, handleChange, label, id, name } = props;
+const TextField = ({ value, handleChange, label, id, name }) => {
   return (
     <React.Fragment>
-      <label for={id}>{label}</label>
+      <label htmlFor={id}>{label}</label>
       <input
         type="text"
         value={value}

@@ -2,24 +2,17 @@ import React from "react";
 import TextField from "./TextField.js";
 import Button from "./Button.js";
 
-const Login = props => (
+const Login = ({ handleChangeUsername, handleLogin, username }) => (
   <div>
     <h2>please enter your github username to login</h2>
     <TextField
       name="username"
-      handleChange={props.handleChange}
+      handleChange={handleChangeUsername}
       id="github-username"
       label="username"
-      value={props.username}
+      value={username}
     />
-    <TextField
-      name="firstName"
-      handleChange={props.handleChange}
-      id="user-firstName"
-      label="Your First Name"
-      value={props.firstName}
-    />
-    <Button value="Login" handleClick={props.handleLogin} />
+    <Button value="Login" handleClick={handleLogin} />
   </div>
 );
 
