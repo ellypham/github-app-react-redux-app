@@ -6,7 +6,8 @@ import {
   handleChangeUsername,
   login,
   handleLogOut,
-  fetchFollowers
+  fetchFollowers,
+  fetchEvents
 } from "./actions.js";
 
 class App extends Component {
@@ -17,7 +18,8 @@ class App extends Component {
       username: "",
       firstname: "",
       profile: {},
-      followers: []
+      followers: [],
+      events: []
     };
   }
 
@@ -25,7 +27,8 @@ class App extends Component {
     if (prevState.loggedIn !== this.props.loggedIn) {
       // I'm not quite sure I understand what's going on here
       if (this.props.loggedIn) {
-        this.props.fetchFollowers(this.props.profile.followers_url);
+        // this.props.fetchFollowers(this.props.profile.followers_url);
+        this.props.fetchEvents(this.props.username);
       }
     }
   }
@@ -44,6 +47,7 @@ class App extends Component {
             {...this.props.profile}
             handleLogOut={this.props.handleLogOut}
             followers={this.props.followers}
+            events={this.props.events}
           />
         ) : (
           <Login
@@ -65,7 +69,8 @@ const mapDispatchToProps = {
   handleChangeUsername,
   login,
   handleLogOut,
-  fetchFollowers
+  fetchFollowers,
+  fetchEvents
 };
 
 export default connect(

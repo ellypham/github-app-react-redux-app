@@ -36,5 +36,16 @@ export const fetchFollowers = followersUrl => dispatch => {
     .then(followers => dispatch(saveFollowers(followers)));
 };
 
+const saveEvents = events => ({
+  type: "FETCH_EVENTS",
+  payload: events
+});
+
 const getGithubEvents = username =>
   fetch(`https://api.github.com/users/${username}/events`);
+
+export const fetchEvents = username => dispatch => {
+  getGithubEvents(username)
+    .then(res => res.json())
+    .then(events => dispatch(saveEvents(events)));
+};
