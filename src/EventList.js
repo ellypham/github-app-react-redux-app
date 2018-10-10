@@ -1,9 +1,7 @@
 import React from "react";
 
 const EventList = ({ events }) => {
-  const pullRequestEvent = events.filter(
-    event => event.type === "PullRequestEvent"
-  );
+  const pullRequestEvent = events.filter(event => event.type === "ForkEvent");
   console.log(pullRequestEvent);
   return (
     <React.Fragment>
@@ -12,7 +10,17 @@ const EventList = ({ events }) => {
         {pullRequestEvent.map((event, i) => {
           return (
             <li key={`follower-${i}`}>
-              <p>{event.payload.pull_request.base.repo.fork}</p>
+              <p>label: {event.payload.pull_request.base.label}</p>
+              <p>{event.payload.pull_request.base.repo.forks_url}</p>
+              <p
+                className={
+                  event.payload.action === "open"
+                    ? "status-open"
+                    : "status-closed"
+                }
+              >
+                {event.payload.action}
+              </p>
             </li>
           );
         })}
