@@ -1,7 +1,9 @@
 import React from "react";
 
 const EventList = ({ events }) => {
-  const pullRequestEvent = events.filter(event => event.type === "ForkEvent");
+  const pullRequestEvent = events.filter(
+    event => event.type === "PullRequestEvent"
+  );
   console.log(pullRequestEvent);
   return (
     <React.Fragment>
@@ -14,7 +16,7 @@ const EventList = ({ events }) => {
               <p>{event.payload.pull_request.base.repo.forks_url}</p>
               <p
                 className={
-                  event.payload.action === "open"
+                  event.payload.action === "opened"
                     ? "status-open"
                     : "status-closed"
                 }
