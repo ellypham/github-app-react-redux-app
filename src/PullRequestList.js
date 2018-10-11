@@ -12,7 +12,7 @@ const PullRequestList = ({ events }) => {
         {pullRequestEvent.map((event, i) => {
           return (
             <li key={`pr-${i}`}>
-              <a href={`${event.payload.pull_request.html_url}}`}>
+              <a href={`${event.payload.pull_request.html_url}`}>
                 {event.payload.pull_request.title}
               </a>
               <p>{event.payload.pull_request.html_url}</p>
