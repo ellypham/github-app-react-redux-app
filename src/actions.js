@@ -11,10 +11,21 @@ export const handleLogin = profile => ({
   payload: profile
 });
 
+const fetchEvents = events => ({
+  type: "FETCH_EVENTS",
+  payload: events
+});
+
+const getGithubEvents = username =>
+  fetch(`https://api.github.com/users/${username}/events`);
+
 export const login = username => dispatch => {
   getGithubUser(username)
     .then(res => res.json())
     .then(profile => dispatch(handleLogin(profile)));
+  getGithubEvents(username)
+    .then(res => res.json())
+    .then(events => dispatch(fetchEvents(events)));
 };
 
 export const handleLogOut = () => ({
@@ -34,18 +45,4 @@ export const fetchFollowers = followersUrl => dispatch => {
   getGithubFollowing(followersUrl)
     .then(res => res.json())
     .then(followers => dispatch(saveFollowers(followers)));
-};
-
-const saveEvents = events => ({
-  type: "FETCH_EVENTS",
-  payload: events
-});
-
-const getGithubEvents = username =>
-  fetch(`https://api.github.com/users/${username}/events`);
-
-export const fetchEvents = username => dispatch => {
-  getGithubEvents(username)
-    .then(res => res.json())
-    .then(events => dispatch(saveEvents(events)));
 };
