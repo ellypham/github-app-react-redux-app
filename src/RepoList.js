@@ -10,7 +10,7 @@ const RepoList = ({ events }) => {
         {forkEvent.map((event, i) => {
           return (
             <li key={`repo-${i}`}>
-              <a href={`${event.repo.url}}`}>{event.repo.name}</a>
+              <a href={`${event.repo.url}`}>{event.repo.name}</a>
               <p>{event.repo.url}</p>
             </li>
           );
